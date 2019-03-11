@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Calendar</title>
+		<style>
+      table {
+        width: 70%;
+        border-collapse: collapse;
+      }
+      td, th {
+        border: 1px solid #C2C2FF;
+        padding: 3px 7px 2px 7px;
+      }
+      th {
+        text-align: left;
+        padding: 5px;
+        background-color: #9999FF;
+        color: #fff;
+      }
+      tr:hover { background-color: #E0E0FF; }
+    </style>
+	</head>
+	<body>
+		<div align="center"><th:block th:include="_menu"></th:block></div>
+		<h2>Calendar</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Week Day</th>
+					<th>Work/Rest</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="line:${Calendar}">
+					<td th:utext="${line.Date}"></td>
+					<td th:utext="${line.DayName}"></td>
+					<td th:utext="${line.WorkFlag}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

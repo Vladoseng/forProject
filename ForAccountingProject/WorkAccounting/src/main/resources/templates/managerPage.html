@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Management Page</title>
+		<style>
+      table {
+        width: 70%;
+        border-collapse: collapse;
+      }
+      td, th {
+        border: 1px solid #C2C2FF;
+        padding: 3px 7px 2px 7px;
+      }
+      th {
+        text-align: left;
+        padding: 5px;
+        background-color: #9999FF;
+        color: #fff;
+      }
+      tr:hover { background-color: #E0E0FF; }
+    </style>
+	</head>
+	<body>
+		<div align="center"><th:block th:include="_menu"></th:block></div>
+		<h2>Management Page</h2>
+		<h2>Workouts List:</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Workout_Id</th>
+					<th>User_Id</th>
+					<th>Project_Id</th>
+					<th>Spent_Hours</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="workout:${workoutsList}">
+					<td th:utext="${workout.Workout_Id}"></td>
+					<td th:utext="${workout.User_Id}"></td>
+					<td th:utext="${workout.Project_Id}"></td>
+					<td th:utext="${workout.Spent_Hours}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<form action="/addWorkout" method="GET">
+			<input type="submit" value="add workout">
+		</form>
+		
+		<h2>Projects List:</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Project_Id</th>
+					<th>Project_Name</th>
+					<th>Info</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="project:${projectsList}">
+					<td th:utext="${project.Project_Id}"></td>
+					<td th:utext="${project.Project_Name}"></td>
+					<td><a th:href="@{/projectInfo/{id}(id=${project.Project_Id})}">Info</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<form action="/assume">
+			<input type="submit" value = "Assume Info">
+		</form>	
+	</body>
+</html>

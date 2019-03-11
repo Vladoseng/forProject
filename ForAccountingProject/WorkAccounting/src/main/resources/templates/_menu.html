@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">
+  <head>
+    <meta charset="utf-8">
+    <title>Menu</title>
+   <style>
+      #navbar {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        border: 2px solid #0066FF;
+        border-radius: 20px 5px;
+        width: 550px;
+        text-align: center;
+        background-color: #33ADFF;
+      }
+      #navbar li { display: inline; }
+      #navbar a {
+        color: #fff;
+        padding: 5px 10px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        width: 100px;
+      }
+      #navbar a:hover {
+        border-radius: 20px 5px;
+        background-color: #0066FF;
+      }
+    </style>
+  </head>
+ 
+  <body>
+  
+    <ul id="navbar">
+      <li><a th:href="@{/}">Home</a></li>
+      <li><a th:href="@{/userInfo}">User Info</a></li>
+      <li><a th:href="@{/workers}">Workers</a></li>
+      <li><a th:href="@{/projects}">Projects</a></li>
+      <li><a th:href="@{/Calendar}">Calendar</a></li>
+      <li><a th:href="@{/management}">Management</a></li>
+      <li><a th:if="${#request.userPrincipal!=null}" th:href="@{/logout}">Logout</a></li>
+    </ul>
+ 
+  </body>
+</html>

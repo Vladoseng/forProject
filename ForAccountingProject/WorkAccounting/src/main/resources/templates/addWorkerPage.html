@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Add Worker</title>
+	</head>
+	<body>
+		<div align="center"><th:block th:include="_menu"></th:block></div>
+		<h1>Add Worker</h1>
+		<form th:action="@{/addWorker}" th:object="${worker}" method="POST">
+			Worker Id:
+			<input type="text" th:field="*{userId}"/>
+			<br/>
+			Worker Name:
+			<input type="text" th:field="*{userName}"/>
+			<br/>
+			User Role:
+			<input type="text" th:field="*{Role}"/>
+			<br/>
+			Password:
+			<input type="text" th:field="*{encrytedPassword}"/>
+			<br/>
+			<input type="submit" value="Add"/>
+		</form>
+	</body>
+</html>

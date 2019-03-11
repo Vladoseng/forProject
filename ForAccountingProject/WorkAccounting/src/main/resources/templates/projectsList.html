@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Projects List</title>
+		<style>
+      table {
+        width: 70%;
+        border-collapse: collapse;
+      }
+      td, th {
+        border: 1px solid #C2C2FF;
+        padding: 3px 7px 2px 7px;
+      }
+      th {
+        text-align: left;
+        padding: 5px;
+        background-color: #9999FF;
+        color: #fff;
+      }
+      tr:hover { background-color: #E0E0FF; }
+    </style>
+	</head>
+	<body>
+		<div align="center"><th:block th:include="_menu"></th:block></div>
+		<h1>List of Projects</h1>
+		<br/><br/>
+		<div>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Project_Id</th>
+						<th>Project_Name</th>
+						<th>Info</th>
+					</tr>		
+				</thead>
+				<tbody>
+				<tr th:each="project:${projectsList}">
+						<td th:utext="${project.Project_Id}"></td>
+						<td th:utext="${project.Project_Name}"></td>
+						<td><a th:href="@{/projectInfo/{id}(id=${project.Project_Id})}">Info</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<form action="/addProject" method="GET">
+				<input type="submit" value="add project">
+			</form>
+		</div>
+	</body>
+</html>

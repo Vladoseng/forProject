@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">
+	<head>
+		<title>User Info</title>	
+		<style>
+      table {
+        width: 70%;
+        border-collapse: collapse;
+      }
+      td, th {
+        border: 1px solid #C2C2FF;
+        padding: 3px 7px 2px 7px;
+      }
+      th {
+        text-align: left;
+        padding: 5px;
+        background-color: #9999FF;
+        color: #fff;
+      }
+      tr:hover { background-color: #E0E0FF; }
+    </style>
+	</head>
+	<body>
+		<!-- Include _menu.html -->
+		<div align="center"><th:block th:include="_menu"></th:block></div>
+		
+		<h2>User Info Page</h2>
+		<h3>Welcome: <span th:utext="${#request.userPrincipal.name}"></span></h3>
+		
+		<br/>
+		<p>Your Data</p>
+		<p>Id: <span th:utext="${userObject.userId}"></span></p>
+		<p>Name: <span th:utext="${userObject.userName}"></span></p>
+		<p>Role: <span th:if="${userInfo!=null}" th:utext="${userInfo}"></span></p>
+		<br/>
+		
+		<div sec:authorize="hasRole('ROLE_WORKER')">
+			<p>Your Projects</p>
+			<!-- <form  th:object = ${var} th:action="@{/hoursUpdate/{id}(id=workout.Project_Id)/{hours}(hours=${var.tmpVar})}"-->>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Spent Hours</th>
+						<th>Information</th>
+						<th>Worked hours Today?</th>
+						<td>Submit</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="workout:${workoutList}">
+						<td th:utext="${workout.Project_Id}"></td>
+						<td th:utext="${workout.Project_Name}"></td>
+						<td th:utext="${workout.Spent_Hours}"></td>
+						<td><a th:href="@{/projectInfo/{id}(id=${workout.Project_Id})}">Information</a></td>
+						<!--  <td><input  type="text" th:field="${var.tmpVar}"/></td>
+						<td><input type="submit" value="Submit"/></td>-->
+						<td><input id="hours" type="text"/></td>
+						<td><a id="button" th:href="@{/hoursUpdate/{id}(id=${workout.Workout_Id})}" class="btn btn-default">Submit</a></td>
+					</tr>
+				</tbody>
+			</table>	
+		<!--  </form>-->
+			<p>Input the project Id and how long time you had been working on it today:</p>
+			
+			
+			
+		<script type="text/javascript">
+		var input = document.getElementById('hours');
+		var button = document.getElementById('button');
+		input.addEventListener('change', function(event) {
+		  var href = button.getAttribute('href');
+		  button.setAttribute('href', href  + "/" + input.value);
+		});
+		</script>
+			
+		</div>
+		
+		<!-- <div th:if="${userInfo!=null}" th:utext="${userInfo}"></div> -->
+	</body>
+</html>

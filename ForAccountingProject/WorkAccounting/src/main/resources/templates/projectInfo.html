@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Project Info</title>
+		<style>
+      table {
+        width: 70%;
+        border-collapse: collapse;
+      }
+      td, th {
+        border: 1px solid #C2C2FF;
+        padding: 3px 7px 2px 7px;
+      }
+      th {
+        text-align: left;
+        padding: 5px;
+        background-color: #9999FF;
+        color: #fff;
+      }
+      tr:hover { background-color: #E0E0FF; }
+    </style>
+	</head>
+	<body>
+		<!-- Include _menu.html -->
+		<div align="center"><th:block th:include="_menu"></th:block></div>
+		<h2>Project Info Page</h2>
+		<form th:object="${project}" method="POST">
+			<p>Project Id: <span th:utext="${project.Project_Id}"></span></p>
+			<p>Project Name: <span th:utext="${project.Project_Name}"></span></p>
+			<!-- <p>Spent total hours: <span th:utext="${project.Spent_Hours}"></span></p> -->
+		</form>
+		<p>Developers</p>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Worker_Id</th>
+					<th>Spent_Hours</th>
+					<th>Worker_Info</th>
+				</tr>
+				<tr th:each="workout:${workoutList}">
+					<td th:utext="${workout.User_Id}"></td>
+					<td th:utext="${workout.Spent_Hours}"></td>
+					<td><a th:href="@{/workerInfo/{id}(id=${workout.User_Id})}">Worker_Info</a></td>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</body>
+</html>

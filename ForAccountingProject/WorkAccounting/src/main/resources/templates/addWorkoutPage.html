@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>App Workout</title>
+	</head>
+	<body>
+		<div align="center"><th:block th:include="_menu"></th:block></div>
+		<h1>Add Workout</h1>
+		<form th:action="@{/addWorkout}" th:object="${workout}" method="POST">
+			Worker Id: <input type="text" th:field="*{User_Id}"/><br/>
+			Project Id: <input type="text" th:field="*{Project_Id}"/><br/>
+			Project_Name: <input type="text" th:field="*{Project_Name}"/><br/>
+			<input type="submit" value="Add"/>
+		</form>
+	</body>
+</html>

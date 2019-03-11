@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:utext="${title}"></title>
+	</head>
+	<body>
+	<div align="center">
+		<!-- Include _menu.html -->
+		<div align="center"><th:block th:include="_menu"></th:block></div>
+		
+		<h2><span th:utext="${message}"></span></h2>
+		<h2 th:if="${#request.userPrincipal==null}"><span th:utext="${continue}"></span><a th:href="@{/login}">login</a></h2>
+		<h2 th:if="${#request.userPrincipal!=null}"><span >choose the operations above</span></h2>
+	</div>
+	</body>
+</html>

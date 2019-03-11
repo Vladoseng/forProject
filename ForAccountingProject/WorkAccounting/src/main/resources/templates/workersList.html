@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Workers List</title>	
+		<style>
+      table {
+        width: 70%;
+        border-collapse: collapse;
+      }
+      td, th {
+        border: 1px solid #C2C2FF;
+        padding: 3px 7px 2px 7px;
+      }
+      th {
+        text-align: left;
+        padding: 5px;
+        background-color: #9999FF;
+        color: #fff;
+      }
+      tr:hover { background-color: #E0E0FF; }
+    </style>
+	</head>
+	<body>
+		<div align="center"><th:block th:include="_menu"></th:block></div>
+		<h1>Workers List</h1>
+		<br/><br/>
+		<div>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Information</th>
+						<!-- <th>Edit</th>
+						<th>Delete</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="worker:${workers}">
+						<td th:utext="${worker.userId}"></td>
+						<td th:utext="${worker.userName}"></td>
+						<td><a th:href="@{/workerInfo/{id}(id=${worker.userId})}">Information</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<form action="/addWorker" method="GET">
+				<input type="submit" value="add worker">
+			</form>
+		</div>
+	</body>
+</html>
